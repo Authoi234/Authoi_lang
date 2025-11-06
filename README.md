@@ -1,5 +1,5 @@
-# Authoi_lang
-## *Created By* **MD. Jawad Jabbar Khan Authoi**
+# 🚀 Authoi_lang
+## ✨ *Created By* **MD. Jawad Jabbar Khan Authoi**
 ## base name: Bhai_lang
 - Any extension name is supported
 - Bhai code supports Js and Bhai code
@@ -13,7 +13,7 @@
   *//code*
   *)*
 - And Many othher Facilities
-### Convensions & Standards
+### 💥 Convensions & Standards
 - Starting with <authoi?> is convension
 - File name with .authoi is convension
 - For PI using directly π is standard ,
