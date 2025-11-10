@@ -1,6 +1,14 @@
 import fs from 'fs';
 import readline from 'readline';
 
+const TYPES = [
+  "INT",
+  "BOOL",
+  "STRING",
+  "OBJ",
+  "LIST"
+]
+
 function translateLine(line) {
   line = line.trim();
   if (line.startsWith("bhai bol")) return `console.log(${line.slice("bhai bol".length).trim()})`;
@@ -62,7 +70,7 @@ const readingThefile = async (fileName) => {
 
     if (line.startsWith("<authoi?>")) {
       results.push("\n")
-    }else if (line.startsWith("bhai bol")) {
+    } else if (line.startsWith("bhai bol")) {
       const toPrint = line.slice("bhai bol".length).trim();
       results.push(`console.log(${toPrint})`);
     } else if (line.startsWith("bhai agar")) {
@@ -78,9 +86,11 @@ const readingThefile = async (fileName) => {
     } else if (/^\s*(int|char|float|str)\s+([A-Za-z_]\w*)(\s*=\s*[^;]+)?\s*;?$/.test(line)) {
       const match = line.match(/^\s*(int|char|float|str)\s+([A-Za-z_]\w*)(?:\s*=\s*([^;]+))?\s*;?$/);
       const type = match[1];
-      const name = match[2];
-      const value = match[3] ? match[3].trim() : null;
-      results.push(`const ${name} = { type: '${type}', value: ${value ?? 'null'} };`);
+      if (TYPES.includes(type.toUpperCase())) {
+        const name = match[2];
+        const value = match[3] ? match[3].trim() : null;
+        results.push(`var ${name} = { type: '${type}', value: ${value ?? 'null'} };`);
+      }
     } else if (line === ")") {
       results.push("}");
     } else if (line === "/)") {
@@ -109,8 +119,23 @@ const readingThefile = async (fileName) => {
   return results;
 };
 
+const run = (arr, func_that_happen_to_The_iterator, backwards = false) => {
+  if (backwards == true) for (let i = iterator.length - 1; i >= 0; i--) func_that_happen_to_The_iterator(i)
+  else for (let i = 0; i < arr.length; i++) func_that_happen_to_The_iterator(i)
+}
 
 
+function range(start=0, stop=null, step=1){
+    if (typeof start !== 'number' || typeof stop !== 'number' || typeof step !== 'number'  ) throw new Error("In range function >> args -- start -- stop -- step ->> Cant be Zero .  ");
+    if (step == 0) throw new Error("In range function >> the arg -- step -- ->> Cant be Zero .  ")
+    const result = [];
+    let i = start;
+    while ((step > 0 && i < stop) || (step < 0 && i > stop)){
+        result.push(i);
+        i += step;
+    } 
+    return result;
+}
 
 async function programultra(fileName) {
   const translatedLines = await readingThefile(fileName);
@@ -144,4 +169,4 @@ function program(codeLines) {
 
 
 
-export { List, program, print, sum, programultra, Amath, π, get_decimal };
+export { List, program, print, sum, programultra, Amath, π, get_decimal, range, agar, run };

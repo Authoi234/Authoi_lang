@@ -29,6 +29,7 @@ if (y > 2) {
     print("well")
 }
 
+
 const list = new List([3,4])
 
 list.print() // [3,4]
@@ -74,7 +75,7 @@ work simple_func (x=5) -> (
     authoi:returner >> x+1 >> :end // Better way
 )
 
-simple_func()
+simple_func()   
 
 std:write >> "\n" + simple_func() >> std:end 
 
@@ -91,5 +92,8 @@ print ( Amath["²"](5) ); // 25 // square of 5
 
 
 int z = 5;
+z= "ABC"
 print(z.value)
 print(z.type)
+
+run(range(0,5,1), function(x){print(`I will be printed 5 times, where i is : ${x}`)})

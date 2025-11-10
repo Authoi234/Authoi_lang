@@ -1,12 +1,14 @@
-import * as authoi_script from './custom-language.js';
-const { List, print, sum, agar} = authoi_script;
+//  This File is Just doing some stuff of AuthoiScript , just using 
+//  some built in functions. Got to File.js To see  Authoi Script
+// 
+// ------------------------------------------------------------------
 
- authoi_script.program(`
+import * as authoi_script from './authoi_script.js';
 
-`.trim().split("\n")); 
+
+const { List, print, sum, π, Amath, get_decimal, range, run} = authoi_script;
 
 const list = new List([3,4])
-
 list.print() // [3,4]
 list.add(4) // it will push 4
 list.add(6) // it will push 6
@@ -39,3 +41,16 @@ print("I can print anything" + "including variables: " + list.size);
 print("you can also print", " ", " \n by comma also other data types ", 4,true)
 
 process.stdout.write("4");
+
+print ( Amath["∑"]( {type: "integer"}, 1,2,3,4,5) ) // 15
+print ( Amath["∑"]({ type: "object" }, { c: 1, d: 4 }, { b: 2 }, { a: 3 })); // { a: 3, b: 2, c:1, d: 4 } )
+print ( Amath["π"]); // 3.14159.....
+print ( Amath["!n"](5) ); // 120 // factorial of 5
+print ( Amath["√"](16) ); // 4
+print ( Amath["²"](5) ); // 25 // square of 5
+
+print(π);
+print(get_decimal(π, 2))
+
+run(range(0,5,1), function(x){print(`I will be printed 5 times, where i is : ${x}`)})
+
