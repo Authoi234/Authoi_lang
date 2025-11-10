@@ -120,8 +120,6 @@
   1. Iterator  
   2. Function to execute per iteration  
   3. Optional `backwards: true/false` (default `false`)
-markdown
-Copy code
 ### 🕶 Other Standards
 
 - Variables: `const`, `int`, dynamic typing allowed  
@@ -150,7 +148,7 @@ Copy code
     ```
 - Now write Authoi_lang code in `file.js` (or `.authoi`) and run `fileCompiler.js` to execute.
 
-Copy code
+
 ### 🖥️ Example Authoi_lang Code
 
 ```authoi
