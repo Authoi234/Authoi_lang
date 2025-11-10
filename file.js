@@ -96,4 +96,4 @@ z= "ABC"
 print(z.value)
 print(z.type)
 
-run(range(0,5,1), function(x){print(`I will be printed 5 times, where i is : ${x}`)})
+run(range(0,5), function(x){print(`I will be printed 5 times from 0 to 4 in backwards, where i is : ${x}`)}, true) // First parameter is the iterator, 2nd is function, 3rd is backwards true or false [it is false by default]
