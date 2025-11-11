@@ -120,8 +120,8 @@ const readingThefile = async (fileName) => {
 };
 
 const run = (arr, func_that_happen_to_The_iterator, backwards = false) => {
-  if (backwards == true) for (let i = arr.length - 1; i >= 0; i--) func_that_happen_to_The_iterator(i)
-  else for (let i = 0; i < arr.length; i++) func_that_happen_to_The_iterator(i)
+  if (backwards == true) for (let i = arr.length - 1; i >= 0; i--) func_that_happen_to_The_iterator(arr[i])
+  else for (let i = 0; i < arr.length; i++) func_that_happen_to_The_iterator(arr[i])
 }
 
 

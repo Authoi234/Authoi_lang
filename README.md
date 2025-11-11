@@ -23,15 +23,16 @@
   - Factorial, square, square root, π
   - Type-aware sums for integers, strings, objects, arrays
 - ✅ Advanced **List Data Type** (custom + array features)
-- ✅ Readable **`bhai bol`** print statements
-- ✅ Flexible **`bhai agar`** conditional syntax
+- ✅ Readable and flexible syntax
 - ✅ Supports **line-by-line execution**
 - ✅ Fully importable in **plain JS** (`authoi_script.js`)
-- ✅ Easy-to-use **run() loops**:
+- ✅ Easy-to-use **run loops**:
   - Forward loops (default)
   - Backward loops (`backwards: true`)
 - ✅ Low-level fast printing: `std:write >> ... >> std:end`
 - ✅ Fully type-aware operations
+- ✅ Easy **ranges**
+- ✅ Easy named or anonymous functions using **work**
 - ✅ Functions and return values with `authoi:returner`  
 
 ---
@@ -60,14 +61,14 @@
 
 ### 📌 File & Script Standards
 - Start scripts with `<authoi?>`  
-- Recommended file extension: `.authoi`  
+- Recommended file extension: `.authoi` and `.js`  
 - Human-readable prints: `bhai bol`  
 - Standard JS-style prints: `print()`  
 - Low-level, fast prints: `std:write >> ... >> std:end` (recommended for loops or large output)
 
 ### 🧮 Math & Computation Standards
 - Use **Amath** for math operations:
-  ```authoi
+  ```javascript
   Amath     // factorial -> 120
   Amath      // square -> 25
   Amath     // sqrt -> 4
@@ -79,7 +80,7 @@
 - Use `sum({...}, ...)` for flexible sum operations:
   - Supports integers, objects, strings, arrays
   - String join, Integer addition, array addition and object join:
-    ```authoi
+    ```javascript
     sum({type: "integer"},2,3,6) // 11
     sum({ type: "object" }, { c: 1, d: 4 }, { b: 2 }, { a: 3 }); // { a: 3, b: 2, c:1, d: 4 }
     sum({ type: "string", join: " , " /* join is optional */ }, "Hello", "Andy", "Js" ); // "Hello , Andy , Js"
@@ -94,10 +95,26 @@
         bhai bol "is smaller than 5"
     )
     ```
+- Functional Conditional Syntax (`agar({condition, thenreturn, return})`)
+  ``` authoi
+  agar({condition: true, thenreturn: (
+        bhai bol "Condition is true!"
+    ), return: (
+        bhai bol "Condition is false!"
+    )})
+  ```
 - Functions use `work` keyword:
     ```authoi
     work myFunc(x) -> (
         bhai bol x*x
+        // or simply
+        Amath["²"](x)
+    )
+    ```
+- Anonymous Functions with `work` keyword:
+    ```authoi
+    work () -> (
+        bhai bol 6+5
     )
     ```
 - Use `authoi:returner` for returning values:
@@ -107,7 +124,7 @@
 
 ### 🌀 Loops
 
-- Use `range(...)` for iteration:
+- Use `range(...)` or `[....]` Arrays for iteration:
   - Forward loop (default):
     ```javascript
     run(range(0,5), x => print(x))
@@ -115,6 +132,13 @@
   - Backward loop:
     ```javascript
     run(range(0,5), x => print(x), true)
+    ```
+  - Loop using work function:
+    ```javascript
+    run(range(0,5), work () -> ( 
+    print("printed via a anonymous work function") 
+    } , true)    // backward
+    // N. B. : If you have to give ) in a line where other elements are exist , and ) belongs to a authoiScript special syntax. you'll have to give } otherwise you'll get an error of unexpected token )
     ```
 - Parameters:  
   1. Iterator  
@@ -128,19 +152,15 @@
 - Keep functions and constants consistent: `sum`, `Amath`, `π`, `List`, `run`, `range`
 ### 💻 How to Start Coding
 
-1. Create a new `.authoi` file [Any Extension is Supported . .js and .authoi are recommended]:
+1. Create a new `.authoi` or `.js` file [Any Extension is Supported . .js and .authoi are recommended]:
     ```authoi
     <authoi?>
-    bhai bol "Hello, Authoi_lang!"
+    bhai bol "Hello, World!"
+    print("Hello World Again")
+    std:write >> "Hello World by standard Output Process" >> std:end
     ```
 
-2. Run it directly via JS import (Not RECOMMENDED):
-    ```javascript
-    import * as authoi_script from './authoi_script.js';
-    authoi_script.programultra("example.authoi");
-    ```
-
-3. Or compile via a **compiler file** (`fileCompiler.js`):
+2. compile via a **compiler file** (`fileCompiler.js`):
     ```javascript
     // fileCompiler.js
     import * as authoi_script from './authoi_script.js';
@@ -156,16 +176,30 @@
 
 work greet(name) -> (
     bhai bol "Hello, " + name + "!"
+    bhai bol `Inside template literal, ${name}`
 )
 
 greet("Alice")
 greet("Bob")
 
-const list = new List([1,2,3])
-list.add(4)
-list.multiply(2)
-list.uniqify()
-list.print() // [2,4,6,8]
+const list = new List([3,4])
+
+list.print() // [3,4]
+list.add(4) // it will push 4
+list.add(6) // it will push 6
+list.remove(3) // it filter out 3
+list.includes(3) // true
+list.includes(3) // true
+list.size // 4
+list.find(3) // 3rd index is now 6
+list.indexof(3) // 0
+list.multiply(3) //9, 12, 12, 18
+list.multiplyLength(2) //[ 9, 12, 12, 18, 9, 12, 12, 18]
+list.uniqify() // [9, 12, 18 ]
+list.clear() // []
+list.items // [], now it is empty so you can see that , it is the main array
+list.items = [1,2,3,4] // you can set the items directly
+list.print() // [1,2,3,4]
 
 bhai agar list.size > 3 -> (
     bhai bol "List is big!"
@@ -174,6 +208,10 @@ bhai agar list.size > 3 -> (
 // Low-level print
 std:write >> "This prints faster!\n" >> std:end
 
-// Loops
-run(range(0,5), x => bhai bol x)          // forward
-run(range(0,5), x => bhai bol x, true)    // backward
+// Run Loops
+run(range(0,5), x => print(x))          // forward
+run([2,3,4,5], x => print(x), true)    // backward
+run(range(0,5), work () -> ( 
+    print("printed via a anonymous work function") 
+} , true)   
+// N. B. : If you have to give ) in a line where other elements are exist , and ) belongs to a authoiScript special syntax. you'll have to give } otherwise you'll get an error of unexpected token )
