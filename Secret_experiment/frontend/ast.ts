@@ -1,0 +1,29 @@
+export type NodeType = "Program" | "NumericLiteral" | "Identifier" | "BinaryExpr";
+
+export interface Statement {
+    kind: NodeType;
+}
+
+export interface Program extends Statement {
+    kind: "Program";
+    body: Statement[];
+}
+
+export interface Expr extends Statement {}
+
+export interface BinaryExpr extends Expr {
+    left: Expr;
+    right: Expr;
+    operator: string;
+    kind: "BinaryExpr";
+}
+
+export interface Identifier extends Expr{
+    kind: "Identifier";
+    symbol: string;
+}
+
+export interface NumericLiteral extends Expr{
+    kind: "NumericLiteral";
+    value: number;
+}
