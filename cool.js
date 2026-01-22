@@ -1,5 +1,5 @@
 //  This File is Just doing some stuff of AuthoiScript , just using 
-//  some built in functions. Got to File.js To see  Authoi Script
+//  some built in functions. Go to File.js To see  Authoi Script
 // 
 // ------------------------------------------------------------------
 
@@ -12,7 +12,7 @@ const list = new List([3,4])
 list.print() // [3,4]
 list.add(4) // it will push 4
 list.add(6) // it will push 6
-list.remove(3) // it filter out 3
+list.remove(3) // it filter out 3th indexed
 list.includes(3) // true
 list.includes(3) // true
 list.size // 4

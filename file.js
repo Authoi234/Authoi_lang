@@ -8,7 +8,7 @@ work myFunc (x) -> (
     work greet(name) -> (
         bhai bol "Hello, " + name + "!"
     )
-    greet("Alice")
+    greet("Jamil")
     greet("Bob") 
     agar({condition: true, thenreturn: (
         bhai bol "Condition is true!"
@@ -91,10 +91,10 @@ print ( Amath["√"](16) ); // 4
 print ( Amath["²"](5) ); // 25 // square of 5
 
 
-int z = 5;
-z= "ABC"
-print(z.value)
-print(z.type)
+// int z = 5;
+// z= "ABC"
+// print(z.value)
+// print(z.type) Currently a bug thus dont try
 
 run(range(0,5), function(x){print(`I will be printed 5 times from 0 to 4 in backwards, where i is : ${x}`)}, true) // First parameter is the iterator, 2nd is function, 3rd is backwards true or false [it is false by default]
 run(range(0,5), x => print(x))          // forward
@@ -102,5 +102,5 @@ run(range(0,5), x => print(x), true)    // backward
 run(range(0,5), work () -> ( 
     print("printed via a anonymous work function") 
 } , true)    // backward
-// N. B. : If you have to give ) in a line where other elements are exist , and ) belongs to a authoiScript special syntax. you'll have to give } otherwise you'll get an error of unexpected token )
+// N. B. : If you have to give ) in a line where other elements exists , and ) belongs to a authoiScript special syntax. you'll have to give } otherwise you'll get an error of unexpected token )
 run([2,3,4,5], x => print(x), true)    // backward
