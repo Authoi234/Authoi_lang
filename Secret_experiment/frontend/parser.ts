@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { Statement, Program, Expr, BinaryExpr, NumericLiteral, Identifier } from './ast.ts';
 import { tokenize, Token, TokenType } from './lexer.ts';
 
@@ -12,6 +13,15 @@ export default class Parser {
     private eat() {
         const prev = this.tokens.shift() as Token;
         return prev;
+    }
+
+    private expect(type: TokenType, error: any) {
+        const prev = this.tokens.shift() as Token;
+        if (!prev || prev.type != type) {
+            console.error("PARSER Error",error, prev, " Expecting - ", type);
+            process.exit(1);
+        }
+
     }
 
     private parseStatement(): Statement {
@@ -60,7 +70,12 @@ export default class Parser {
 
             case TokenType.Number:
                 return { kind: "NumericLiteral", value: parseFloat(this.eat().value) } as NumericLiteral;
-
+            case TokenType.OpenParen: {
+                this.eat();
+                const value = this.parseExpr();
+                this.expect(TokenType.CloseParen, "Unexpected Token Found! Inside parenthesised expression*|Expected* ')' . ~ thank you.");
+                return value;
+            }
             default:
                 console.log("Unexpected token found!~", this.at());
                 process.exit(1);

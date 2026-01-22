@@ -2,6 +2,7 @@ import * as fs from "fs/promises";
 
 export enum TokenType {
     // literal types
+    Nothing,
     Number,
     Identifier,
 
